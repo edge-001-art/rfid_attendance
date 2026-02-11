@@ -1,0 +1,75 @@
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container {
+    padding: 30px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.login-box {
+    background: white;
+    color: black;
+    width: 300px;
+    padding: 40px;
+    margin: 120px auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.primary-btn {
+    background: #2a5298;
+    color: white;
+    width: 100%;
+}
+
+.primary-btn:hover {
+    background: #1e3c72;
+}
+
+.logout-btn {
+    background: red;
+    color: white;
+}
+
+table {
+    width: 100%;
+    background: white;
+    color: black;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #2a5298;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f2f2f2;
+}
