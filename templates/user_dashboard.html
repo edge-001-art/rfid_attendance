@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="dashboard-container">
+
+<div class="header">
+    
+    <h1>RFID VEHICLE MONITORING RECORD</h1>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+</div>
+<div class="user-container glass-card">
+
+<form method="POST" action="{{ url_for('record') }}">
+
+<select name="rfid_type">
+    <option>Autosweep</option>
+    <option>EasyTrip</option>
+</select>
+
+<input type="text" name="vehicle_type" placeholder="Vehicle Type" required>
+<input type="text" name="plate_number" placeholder="Plate Number" required>
+<input type="text" name="driver" placeholder="Driver" required>
+<input type="text" name="department" placeholder="Department" required>
+<input type="date" name="travel_date" required>
+<input type="text" name="from_location" placeholder="From Location" required>
+<input type="text" name="to_location" placeholder="To Location" required>
+<input type="text" name="rfid_location" placeholder="RFID Location" required>
+<input type="number" name="amount" placeholder="Amount" required>
+
+<button type="submit" class="submit-btn">Submit Record</button>
+
+
+</form>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-container">
+
+<div class="header">
+    <h1>ADMIN DASHBOARD</h1>
+    <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+</div>
+
+<div class="total-box">
+    Total Amount: ₱ {{ total }}
+</div>
+
+<!-- ================= FILTER ================= -->
+<form method="GET" action="{{ url_for('dashboard') }}" class="filter-form">
+    <select name="filter">
+        <option value="All">All</option>
+        <option value="EasyTrip"
+            {% if selected_filter == "EasyTrip" %}selected{% endif %}>
+            EasyTrip
+        </option>
+        <option value="Autosweep"
+            {% if selected_filter == "Autosweep" %}selected{% endif %}>
+            Autosweep
+        </option>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<div class="admin-container">
+<table>
+    <tr>
+        <th>RFID</th>
+        <th>Plate</th>
+        <th>Driver</th>
+        <th>Date</th>
+        <th>From</th>
+        <th>To</th>
+        <th>RFID Location</th>
+        <th>Amount</th>
+        <th>Action</th>
+    </tr>
+
+    {% for log in logs %}
+    <tr>
+        <td>{{ log.rfid_type }}</td>
+        <td>{{ log.plate_number }}</td>
+        <td>{{ log.driver }}</td>
+        <td>{{ log.travel_date }}</td>
+        <td>{{ log.from_location }}</td>
+        <td>{{ log.to_location }}</td>
+        <td>{{ log.rfid_location }}</td>
+        <td>₱ {{ log.amount }}</td>
+        <td>
+            <a href="{{ url_for('edit', id=log.id) }}" style="color:white">Edit</a> |
+            <a href="{{ url_for('delete', id=log.id) }}" style="color:white">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+</div>
+
+</body>
+</html>

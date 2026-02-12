@@ -1,0 +1,26 @@
+vehicle_type,plate_number,driver,department,travel_date,from_location,to_location
+Sedan,ABC-101,John Cruz,HR,2026-02-01,Campus A,Campus B
+SUV,XYZ-202,Maria Santos,Finance,2026-02-01,Main Office,Warehouse
+Truck,LMN-303,David Lee,Logistics,2026-02-01,Warehouse,Site A
+Van,JKL-404,Anna Kim,IT,2026-02-01,IT Center,Main Office
+Sedan,DEF-505,Carlos Gomez,Admin,2026-02-01,Campus B,Campus A
+SUV,GHI-606,Emily Tan,HR,2026-02-01,Campus A,Warehouse
+Truck,OPQ-707,Michael Chan,Logistics,2026-02-01,Site A,Warehouse
+Van,RST-808,Sarah Lim,Finance,2026-02-01,Main Office,Campus B
+Sedan,UVW-909,Kevin Park,IT,2026-02-01,IT Center,Campus A
+SUV,AAA-111,Chris Wong,Admin,2026-02-01,Campus A,Campus B
+Truck,BBB-222,Mark Diaz,Logistics,2026-02-01,Warehouse,Site B
+Van,CCC-333,Linda Yu,HR,2026-02-01,Campus B,Main Office
+Sedan,DDD-444,James Tan,Finance,2026-02-01,Main Office,Campus A
+SUV,EEE-555,Nina Cruz,Admin,2026-02-01,Campus A,Warehouse
+Truck,FFF-666,Paul Kim,Logistics,2026-02-01,Site B,Warehouse
+Van,GGG-777,Olivia Park,IT,2026-02-01,IT Center,Campus B
+Sedan,HHH-888,Daniel Lee,HR,2026-02-01,Campus B,Campus A
+SUV,III-999,Sophia Lim,Finance,2026-02-01,Warehouse,Main Office
+Truck,JJJ-123,Robert Chan,Logistics,2026-02-01,Site A,Campus A
+Van,KKK-234,Angela Yu,Admin,2026-02-01,Campus A,Campus B
+Sedan,LLL-345,Brian Gomez,IT,2026-02-01,IT Center,Warehouse
+SUV,MMM-456,Grace Tan,HR,2026-02-01,Campus B,Site A
+Truck,NNN-567,Henry Cruz,Logistics,2026-02-01,Warehouse,Campus A
+Van,OOO-678,Irene Lee,Finance,2026-02-01,Main Office,Campus B
+Sedan,PPP-789,Victor Lim,Admin,2026-02-01,Campus A,Main Office

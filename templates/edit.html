@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Record</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-container">
+
+<div class="edit-container glass-card">
+<h2>Edit Record</h2>
+
+<form method="POST">
+
+<select name="rfid_type">
+    <option value="Autosweep" {% if log.rfid_type == "Autosweep" %}selected{% endif %}>Autosweep</option>
+    <option value="EasyTrip" {% if log.rfid_type == "EasyTrip" %}selected{% endif %}>EasyTrip</option>
+</select>
+
+<input type="text" name="vehicle_type" value="{{ log.vehicle_type }}" required>
+<input type="text" name="plate_number" value="{{ log.plate_number }}" required>
+<input type="text" name="driver" value="{{ log.driver }}" required>
+<input type="text" name="department" value="{{ log.department }}" required>
+<input type="date" name="travel_date" value="{{ log.travel_date }}" required>
+<input type="text" name="from_location" value="{{ log.from_location }}" required>
+<input type="text" name="to_location" value="{{ log.to_location }}" required>
+<input type="text" name="rfid_location" value="{{ log.rfid_location }}" required>
+<input type="number" name="amount" value="{{ log.amount }}" required>
+
+<button type="submit">Update</button>
+
+</form>
+</div>
+
+</body>
+</html>

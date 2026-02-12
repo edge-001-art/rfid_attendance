@@ -1,75 +1,413 @@
-body {
-    font-family: Arial;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+/* ===============================
+   GLOBAL SETTINGS
+=================================*/
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* ===============================
+   LOGIN PAGE BACKGROUND
+=================================*/
+
+.login-body {
+    background: linear-gradient(rgba(1,24,150,0.75), rgba(1,24,150,0.75)),
+                url("https://images.candymag.com/candy/images/2022/12/16/applying-to-iacademy.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===============================
+   LOGIN WRAPPER
+=================================*/
+
+.login-wrapper {
+    width: 900px;
+    min-height: 550px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Left panel */
+.login-left {
+    flex: 1;
+    background: url("https://i0.wp.com/peopleasia.ph/wp-content/uploads/2020/05/iAcademy-logo.png?resize=314%2C431"),
+                linear-gradient(135deg, #d0d3e6, #e6e6e6c5);
+    background-repeat: no-repeat;
+    background-size: contain 65%;
+    background-position: center;
+}
+
+/* Right panel */
+.login-right {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Titles */
+.login-right h1 {
     color: white;
+    margin-bottom: 40px;
+    font-size: 35px;
 }
 
-.container {
-    padding: 30px;
+.login-right h2 {
+    color: white;
+    margin-bottom: 20px;
 }
 
-h1 {
+/* Inputs */
+.login-right input {
+    width: 80%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
     text-align: center;
+    font-size: 15px;
+    margin-left: 35px;
 }
 
-.login-box {
+/* Login + Forgot side */
+.login-actions {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left:35px;
+}
+
+/* Buttons */
+.login-btn {
+    padding: 12px 35px;
+    border-radius: 30px;
+    border: none;
     background: white;
     color: black;
-    width: 300px;
-    padding: 40px;
-    margin: 120px auto;
-    border-radius: 10px;
-    text-align: center;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 6px;
+    transition: 0.3s ease;
+    margin-right:auto;
+}
+.Recover-btn {
+    padding: 12px 35px;
+    border-radius: 30px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-left:35px;
+    margin-right: 100px;
 }
 
-.primary-btn {
-    background: #2a5298;
+.login-btn:hover,
+.Recover-btn:hover {
+    background: #2673bbc5;
     color: white;
-    width: 100%;
 }
 
-.primary-btn:hover {
-    background: #1e3c72;
+/* Links */
+.forgot-link {
+    color: #d6c7ff;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-right:3px;
 }
 
+.BackToLogin-link {
+    color: #d6c7ff;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-right:-195px;
+    margin-top:-30px;
+}
+
+.forgot-link:hover,
+.BackToLogin-link:hover {
+    color: white;
+}
+
+/* ===============================
+   DASHBOARD BACKGROUND
+=================================*/
+
+.dashboard-container {
+    min-height: 100vh;
+    padding: 40px;
+    background: linear-gradient(to right, #02188f, #2673bbc5), url("https://images.candymag.com/candy/images/2022/12/16/applying-to-iacademy.png");
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+    color: white;
+}
+
+/* ===============================
+   HEADER
+=================================*/
+
+.header {
+    display: flex;
+    background: linear-gradient(rgba(1,24,150,0.75), rgba(1,24,150,0.75)),
+                url("https://goodnewspilipinas.com/wp-content/uploads/2020/10/iAcademy.jpg");
+                background-size:cover;
+                background-position:center;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    width:100%;
+    height: 130px;
+    border-radius:20px;
+}
+h1 {margin:20px;}
 .logout-btn {
-    background: red;
+    padding: 8px 20px;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    margin:10px;
+}
+
+.logout-btn:hover {
+    background: #ddd;
+}
+
+/* ===============================
+   GLASS CARD
+=================================*/
+
+.glass-card {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 80px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: 80px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    width:50%;
+    
+}
+
+/* ===============================
+   USER DASHBOARD (VERTICAL FORM)
+=================================*/
+
+.user-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.user-container input,
+.user-container select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.submit-btn {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width:50%;
+    margin:auto;
+}
+
+
+.submit-btn:hover {
+    background: #02188f;
     color: white;
 }
 
+/* ===============================
+   ADMIN DASHBOARD
+=================================*/
+
+.admin-container {
+    margin-top: 20px;
+    background: rgb(255, 255, 255, 0.63);
+    backdrop-filter: blur(0.01px);
+    padding: 80px;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    width:100%;
+
+}
+
+/* Table */
 table {
     width: 100%;
-    background: white;
-    color: black;
     border-collapse: collapse;
     margin-top: 20px;
+    background: rgba(34, 62, 219, 0.753);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: center;
 }
 
 th {
-    background: #2a5298;
-    color: white;
+    background: rgba(0,0,0,0.3);
 }
 
 tr:nth-child(even) {
-    background: #f2f2f2;
+    background: rgba(255,255,255,0.05);
 }
+
+/* Delete button */
+.delete-btn {
+    padding: 6px 14px;
+    background: red;
+    color: white;
+    border-radius: 15px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: darkred;
+}
+
+/* ===============================
+   TOTAL DISPLAY
+=================================*/
+
+.total-box {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* ===============================
+   EDIT BUTTON (Admin)
+=================================*/
+
+.edit-btn {
+    padding: 6px 14px;
+    background: orange;
+    color: rgb(255, 243, 243);
+    border-radius: 15px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: darkorange;
+}
+/* ===============================
+   EDIT PAGE - VERTICAL FIX
+=================================*/
+
+.edit-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin:auto;
+}
+
+.edit-container input,
+.edit-container select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.edit-container button {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-container button:hover {
+    background: #02188f;
+    color: white;
+
+}
+
+h2 {
+    text-align:center;
+    margin-bottom:60px;
+    margin-top:-40px;
+    font-size:250%;
+    font-family:'Times New Roman';
+}
+/* ===============================
+   ADMIN FILTER STYLE
+=================================*/
+
+.filter-form {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.filter-form select {
+    padding: 8px 12px;
+    border-radius: 15px;
+    border: none;
+}
+
+.filter-form button {
+    padding: 8px 15px;
+    border-radius: 15px;
+    border: none;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-form button:hover {
+    background: #02188f;
+    color: white;
+}
+
