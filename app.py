@@ -109,46 +109,45 @@ def dashboard():
 
     if "user_id" not in session:
         return redirect(url_for("login"))
-
     # ================= ADMIN =================
     if session["role"] == "admin":
-        search = request.args.get("search", "")
-    rfid_type = request.args.get("rfid_type", "All")
-    vehicle_type = request.args.get("vehicle_type", "All")
 
-    logs_query = VehicleLog.query
+        logs_query = VehicleLog.query
 
-    # SEARCH by plate number
-    if search:
-        logs_query = logs_query.filter(
-            VehicleLog.plate_number.ilike(f"%{search}%")
+        # FILTERS (ADMIN ONLY)
+        search = request.args.get("search")
+        rfid_filter = request.args.get("rfid")
+        vehicle_filter = request.args.get("vehicle_filter")
+
+        if search:
+            logs_query = logs_query.filter(
+                VehicleLog.plate_number.ilike(f"%{search}%")
+            )
+
+        if rfid_filter and rfid_filter != "All":
+            logs_query = logs_query.filter(
+                VehicleLog.rfid_type == rfid_filter
+            )
+
+        if vehicle_filter and vehicle_filter != "All":
+            logs_query = logs_query.filter(
+                VehicleLog.vehicle_type == vehicle_filter
+            )
+
+        logs = logs_query.all()
+
+        total = sum(log.amount for log in logs)
+
+        users = User.query.filter_by(approved=False).all()
+        all_users = User.query.filter_by(role="user").all()
+
+        return render_template(
+            "admin_dashboard.html",
+            logs=logs,
+            total=total,
+            users=users,
+            all_users=all_users
         )
-
-    # FILTER by RFID type
-    if rfid_type != "All":
-        logs_query = logs_query.filter_by(rfid_type=rfid_type)
-
-    # FILTER by Vehicle type
-    if vehicle_type != "All":
-        logs_query = logs_query.filter_by(vehicle_type=vehicle_type)
-
-    logs = logs_query.all()
-    total = sum(log.amount for log in logs)
-
-    users = User.query.filter_by(approved=False).all()
-    all_users = User.query.filter_by(role="user").all()
-
-    return render_template(
-        "admin_dashboard.html",
-        logs=logs,
-        total=total,
-        users=users,
-        all_users=all_users,
-        search=search,
-        rfid_type=rfid_type,
-        vehicle_type=vehicle_type
-    )
-
 
     # ================= USER =================
     user = User.query.get(session["user_id"])
@@ -191,6 +190,7 @@ def dashboard():
         logs=logs,
         balance=user.balance
     )
+
 
 
 # ================= EDIT =================
