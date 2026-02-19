@@ -32,33 +32,28 @@
 <form method="GET" class="filter-form">
 
     <input type="text" name="search" placeholder="Search Plate"
-           value="{{ request.args.get('search','') }}">
+           value="{{ search }}">
 
     <select name="rfid_type">
-        <option value="All">All</option>
-        <option value="Autosweep"
-            {% if request.args.get('rfid_type') == 'Autosweep' %}selected{% endif %}>
-            Autosweep
-        </option>
-        <option value="Easytrip"
-            {% if request.args.get('rfid_type') == 'Easytrip' %}selected{% endif %}>
-            Easytrip
-        </option>
+        <option value="All" {% if rfid_type == "All" %}selected{% endif %}>All</option>
+        <option value="Autosweep" {% if rfid_type == "Autosweep" %}selected{% endif %}>Autosweep</option>
+        <option value="Easytrip" {% if rfid_type == "Easytrip" %}selected{% endif %}>Easytrip</option>
     </select>
 
     <select name="vehicle_type">
-        <option value="All">All Vehicle Types</option>
-        <option value="Sedan" {% if request.args.get('vehicle_type') == 'Sedan' %}selected{% endif %}>Sedan</option>
-        <option value="SUV" {% if request.args.get('vehicle_type') == 'SUV' %}selected{% endif %}>SUV</option>
-        <option value="Hatchback" {% if request.args.get('vehicle_type') == 'Hatchback' %}selected{% endif %}>Hatchback</option>
-        <option value="Van" {% if request.args.get('vehicle_type') == 'Van' %}selected{% endif %}>Van</option>
-        <option value="Pickup" {% if request.args.get('vehicle_type') == 'Pickup' %}selected{% endif %}>Pickup</option>
-        <option value="Truck" {% if request.args.get('vehicle_type') == 'Truck' %}selected{% endif %}>Truck</option>
-        <option value="Motorcycle" {% if request.args.get('vehicle_type') == 'Motorcycle' %}selected{% endif %}>Motorcycle</option>
+        <option value="All" {% if vehicle_type == "All" %}selected{% endif %}>All Vehicle Types</option>
+        <option value="Sedan" {% if vehicle_type == "Sedan" %}selected{% endif %}>Sedan</option>
+        <option value="SUV" {% if vehicle_type == "SUV" %}selected{% endif %}>SUV</option>
+        <option value="Hatchback" {% if vehicle_type == "Hatchback" %}selected{% endif %}>Hatchback</option>
+        <option value="Van" {% if vehicle_type == "Van" %}selected{% endif %}>Van</option>
+        <option value="Pickup" {% if vehicle_type == "Pickup" %}selected{% endif %}>Pickup</option>
+        <option value="Truck" {% if vehicle_type == "Truck" %}selected{% endif %}>Truck</option>
+        <option value="Motorcycle" {% if vehicle_type == "Motorcycle" %}selected{% endif %}>Motorcycle</option>
     </select>
 
     <button type="submit">Filter</button>
 </form>
+
 
 <!-- ================= PENDING USERS ================= -->
 <div class="section">
