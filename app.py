@@ -109,33 +109,37 @@ def dashboard():
 
     if "user_id" not in session:
         return redirect(url_for("login"))
+
+    user = User.query.get(session["user_id"])
+
     # ================= ADMIN =================
     if session["role"] == "admin":
 
-        logs_query = VehicleLog.query
+        search = request.args.get("search", "")
+        rfid_type = request.args.get("rfid_type", "All")
+        vehicle_type = request.args.get("vehicle_type", "All")
 
-        # FILTERS (ADMIN ONLY)
-        search = request.args.get("search")
-        rfid_filter = request.args.get("rfid")
-        vehicle_filter = request.args.get("vehicle_filter")
+        query = VehicleLog.query
 
+        # SEARCH
         if search:
-            logs_query = logs_query.filter(
+            query = query.filter(
                 VehicleLog.plate_number.ilike(f"%{search}%")
             )
 
-        if rfid_filter and rfid_filter != "All":
-            logs_query = logs_query.filter(
-                VehicleLog.rfid_type == rfid_filter
+        # RFID FILTER
+        if rfid_type != "All":
+            query = query.filter(
+                VehicleLog.rfid_type == rfid_type
             )
 
-        if vehicle_filter and vehicle_filter != "All":
-            logs_query = logs_query.filter(
-                VehicleLog.vehicle_type == vehicle_filter
+        # VEHICLE FILTER
+        if vehicle_type != "All":
+            query = query.filter(
+                VehicleLog.vehicle_type == vehicle_type
             )
 
-        logs = logs_query.all()
-
+        logs = query.order_by(VehicleLog.id.desc()).all()
         total = sum(log.amount for log in logs)
 
         users = User.query.filter_by(approved=False).all()
@@ -146,12 +150,13 @@ def dashboard():
             logs=logs,
             total=total,
             users=users,
-            all_users=all_users
+            all_users=all_users,
+            search=search,
+            rfid_type=rfid_type,
+            vehicle_type=vehicle_type
         )
 
     # ================= USER =================
-    user = User.query.get(session["user_id"])
-
     if request.method == "POST":
 
         amount = float(request.form.get("amount"))
@@ -183,13 +188,16 @@ def dashboard():
         flash("Transaction saved successfully!")
         return redirect(url_for("dashboard"))
 
-    logs = VehicleLog.query.filter_by(user_id=user.id).all()
+    logs = VehicleLog.query.filter_by(user_id=user.id)\
+        .order_by(VehicleLog.id.desc()).all()
+
 
     return render_template(
         "user_dashboard.html",
         logs=logs,
         balance=user.balance
     )
+
 
 
 
