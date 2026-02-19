@@ -1,7 +1,4 @@
-/* ===============================
-   GLOBAL SETTINGS
-=================================*/
-
+/* GLOBAL */
 * {
     margin: 0;
     padding: 0;
@@ -9,10 +6,169 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-body {
+/* DASHBOARD BACKGROUND */
+.dashboard-container {
     min-height: 100vh;
+    padding: 40px;
+    background: linear-gradient(rgba(1,24,150,0.75), rgba(1,24,150,0.75)),
+                url("https://images.candymag.com/candy/images/2022/12/16/applying-to-iacademy.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
 }
 
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.logout-btn {
+    padding: 8px 20px;
+    background: white;
+    color: black;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* TWO COLUMN LAYOUT */
+.dashboard-flex {
+    display: flex;
+    gap: 30px;
+}
+
+/* LEFT FORM */
+.form-section {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* RIGHT HISTORY */
+.history-section {
+    flex: 1.5;
+    background: rgba(255,255,255,0.08);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* Smooth rounded table corners */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 20px;
+    overflow: hidden; /* IMPORTANT */
+}
+
+/* Dark blue header with gradient fade */
+th {
+    background: linear-gradient(
+        to bottom,
+        #1e3a8a 0%,   /* dark blue top */
+        #2563eb 100%  /* lighter blue bottom */
+    );
+    color: rgb(255, 255, 255);
+}
+
+/* Light blue table body */
+td {
+    background:  linear-gradient(
+        to bottom,
+        #155aca 0%,
+        #468aff 100%
+    );  /* lighter blue + opacity */
+}
+
+
+
+
+
+/* FORM */
+.vertical-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.vertical-form input,
+.vertical-form select {
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+}
+
+.submit-btn {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* BALANCE */
+.balance-box {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.low-warning {
+    color: #ffb3b3;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th {
+    background: rgba(0,0,0,0.3);
+    padding: 10px;
+}
+
+td {
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: rgba(255,255,255,0.05);
+}
+
+/* ADMIN BUTTONS */
+.edit-btn {
+    background: orange;
+    padding: 6px 12px;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: red;
+    padding: 6px 12px;
+    border-radius: 15px;
+    color: white;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
 /* ===============================
    LOGIN PAGE BACKGROUND
 =================================*/
@@ -25,10 +181,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100vh;
 }
 
 /* ===============================
-   LOGIN WRAPPER
+   LOGIN WRAPPER (GLASS)
 =================================*/
 
 .login-wrapper {
@@ -42,17 +199,23 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-/* Left panel */
+/* ===============================
+   LEFT PANEL (LOGO SIDE)
+=================================*/
+
 .login-left {
     flex: 1;
     background: url("https://i0.wp.com/peopleasia.ph/wp-content/uploads/2020/05/iAcademy-logo.png?resize=314%2C431"),
                 linear-gradient(135deg, #d0d3e6, #e6e6e6c5);
     background-repeat: no-repeat;
-    background-size: contain 65%;
+    background-size: contain;
     background-position: center;
 }
 
-/* Right panel */
+/* ===============================
+   RIGHT PANEL (FORM SIDE)
+=================================*/
+
 .login-right {
     flex: 1;
     padding: 60px;
@@ -62,7 +225,8 @@ body {
     align-items: center;
 }
 
-/* Titles */
+/* TITLES */
+
 .login-right h1 {
     color: white;
     margin-bottom: 40px;
@@ -74,7 +238,133 @@ body {
     margin-bottom: 20px;
 }
 
-/* Inputs */
+/* ===============================
+   INPUTS
+=================================*/
+
+.login-right input {
+    width: 80%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    margin-left:43px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+}
+
+/* ===============================
+   BUTTONS
+=================================*/
+
+.login-btn {
+    padding: 12px 35px;
+    border-radius: 30px;
+    margin-left:45px;
+    border: none;
+    background: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #2673bbc5;
+    color: white;
+}
+
+/* ===============================
+   LINKS
+=================================*/
+
+.forgot-link,
+.BackToLogin-link {
+    color: #d6c7ff;
+    text-decoration: underline;
+    font-size: 14px;
+    margin-left:98px;
+    margin-top: 10px;
+}
+
+.forgot-link:hover,
+.BackToLogin-link:hover {
+    color: white;
+}
+/* ===============================
+   LOGIN PAGE BACKGROUND
+=================================*/
+
+.login-body {
+    background: linear-gradient(rgba(1,24,150,0.75), rgba(1,24,150,0.75)),
+                url("https://images.candymag.com/candy/images/2022/12/16/applying-to-iacademy.png");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* ===============================
+   LOGIN WRAPPER (GLASS)
+=================================*/
+
+.login-wrapper {
+    width: 900px;
+    min-height: 550px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: flex;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ===============================
+   LEFT PANEL (LOGO SIDE)
+=================================*/
+
+.login-left {
+    flex: 1;
+    background: url("https://i0.wp.com/peopleasia.ph/wp-content/uploads/2020/05/iAcademy-logo.png?resize=314%2C431"),
+                linear-gradient(135deg, #d0d3e6, #e6e6e6c5);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+/* ===============================
+   RIGHT PANEL (FORM SIDE)
+=================================*/
+
+.login-right {
+    flex: 1;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TITLES */
+
+.login-right h1 {
+    color: white;
+    margin-bottom: 40px;
+    font-size: 35px;
+}
+
+.login-right h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+/* ===============================
+   INPUTS
+=================================*/
+
 .login-right input {
     width: 80%;
     padding: 15px;
@@ -84,19 +374,12 @@ body {
     outline: none;
     text-align: center;
     font-size: 15px;
-    margin-left: 35px;
 }
 
-/* Login + Forgot side */
-.login-actions {
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-left:35px;
-}
+/* ===============================
+   BUTTONS
+=================================*/
 
-/* Buttons */
 .login-btn {
     padding: 12px 35px;
     border-radius: 30px;
@@ -106,41 +389,23 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
-    margin-right:auto;
-}
-.Recover-btn {
-    padding: 12px 35px;
-    border-radius: 30px;
-    border: none;
-    background: white;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s ease;
-    margin-left:35px;
-    margin-right: 100px;
 }
 
-.login-btn:hover,
-.Recover-btn:hover {
+.login-btn:hover {
     background: #2673bbc5;
     color: white;
 }
 
-/* Links */
-.forgot-link {
-    color: #d6c7ff;
-    text-decoration: underline;
-    font-size: 14px;
-    margin-right:3px;
-}
+/* ===============================
+   LINKS
+=================================*/
 
+.forgot-link,
 .BackToLogin-link {
     color: #d6c7ff;
     text-decoration: underline;
     font-size: 14px;
-    margin-right:-195px;
-    margin-top:-30px;
+    margin-top: 10px;
 }
 
 .forgot-link:hover,
@@ -148,266 +413,197 @@ body {
     color: white;
 }
 
-/* ===============================
-   DASHBOARD BACKGROUND
+
+  /* ===============================
+   USER DASHBOARD SPLIT LAYOUT
 =================================*/
 
-.dashboard-container {
-    min-height: 100vh;
-    padding: 40px;
-    background: linear-gradient(to right, #02188f, #2673bbc5), url("https://images.candymag.com/candy/images/2022/12/16/applying-to-iacademy.png");
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center;
-    color: white;
-}
-
-/* ===============================
-   HEADER
-=================================*/
-
-.header {
+.user-split-container {
     display: flex;
-    background: linear-gradient(rgba(1,24,150,0.75), rgba(1,24,150,0.75)),
-                url("https://goodnewspilipinas.com/wp-content/uploads/2020/10/iAcademy.jpg");
-                background-size:cover;
-                background-position:center;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    font-size: 28px;
-    font-weight: bold;
-    width:100%;
-    height: 130px;
-    border-radius:20px;
-}
-h1 {margin:20px;}
-.logout-btn {
-    padding: 8px 20px;
-    background: white;
-    color: black;
-    border-radius: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    margin:10px;
+    gap: 30px;
+    margin-top: 40px;
 }
 
-.logout-btn:hover {
-    background: #ddd;
+/* LEFT PANEL */
+.left-panel {
+    flex: 1;
+    border-radius: 20px;
+}
+
+/* RIGHT PANEL */
+.right-panel {
+    flex: 1.2;
+    border-radius: 20px;
+    overflow-x: auto;
+}
+
+/* Keep rounded edges */
+.glass-card {
+    border-radius: 20px;
+}
+
+/* Responsive (optional but safe) */
+@media (max-width: 1000px) {
+    .user-split-container {
+        flex-direction: column;
+    }
+}
+/* ===============================
+   USER TWO-COLUMN SPLIT
+=================================*/
+
+.user-split-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 40px auto;
+    align-items: flex-start;
 }
 
 /* ===============================
-   GLASS CARD
+   FIXED USER DASHBOARD PANELS
 =================================*/
 
-.glass-card {
+.left-panel,
+.right-panel {
     background: rgba(255,255,255,0.1);
     backdrop-filter: blur(10px);
-    padding: 80px;
-    margin-left:auto;
-    margin-right:auto;
-    margin-top: 80px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    width:50%;
-    
+    padding: 30px;
+    border-radius: 20px;
 }
 
-/* ===============================
-   USER DASHBOARD (VERTICAL FORM)
+/* Keep spacing clean */
+.user-split-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 40px auto;
+    align-items: flex-start;
+}
+
+/* =================================
+   USER DASHBOARD FINAL FIX
+   (DO NOT CHANGE DESIGN)
+================================= */
+
+.user-split-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.left-panel {
+    flex: 1;
+}
+
+.right-panel {
+    flex: 1.2;
+    overflow-x: auto;
+}
+
+/* Keep rounded edges */
+.glass-card {
+    border-radius: 20px;
+}
+
+/* Responsive fallback */
+@media (max-width: 1000px) {
+    .user-split-container {
+        flex-direction: column;
+    }
+}
+.user-split-container {
+    border: 3px solid rgba(17, 0, 248, 0.212);
+    border-radius: 20px;
+}
+
+/* =================================
+   EDIT TRANSACTION PAGE
 =================================*/
 
-.user-container form {
+.center-container {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background: linear-gradient(rgba(1,24,150,0.75), rgba(1,24,150,0.75)),
+                url("https://images.candymag.com/candy/images/2022/12/16/applying-to-iacademy.png");
+    background-size: cover;
+    background-position: center;
 }
 
-.user-container input,
-.user-container select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-}
-
-.submit-btn {
-    padding: 12px;
+/* Glass Card */
+.card {
+    width: 600px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
     border-radius: 25px;
-    border: none;
-    background: white;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    width:50%;
-    margin:auto;
-}
-
-
-.submit-btn:hover {
-    background: #02188f;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
     color: white;
 }
 
-/* ===============================
-   ADMIN DASHBOARD
-=================================*/
-
-.admin-container {
-    margin-top: 20px;
-    background: rgb(255, 255, 255, 0.63);
-    backdrop-filter: blur(0.01px);
-    padding: 80px;
-    margin-left:auto;
-    margin-right:auto;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    width:100%;
-
-}
-
-/* Table */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: rgba(34, 62, 219, 0.753);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 12px;
+/* Title */
+.card h2 {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-th {
-    background: rgba(0,0,0,0.3);
-}
-
-tr:nth-child(even) {
-    background: rgba(255,255,255,0.05);
-}
-
-/* Delete button */
-.delete-btn {
-    padding: 6px 14px;
-    background: red;
-    color: white;
-    border-radius: 15px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-
-.delete-btn:hover {
-    background: darkred;
-}
-
-/* ===============================
-   TOTAL DISPLAY
-=================================*/
-
-.total-box {
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-/* ===============================
-   EDIT BUTTON (Admin)
-=================================*/
-
-.edit-btn {
-    padding: 6px 14px;
-    background: orange;
-    color: rgb(255, 243, 243);
-    border-radius: 15px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-
-.edit-btn:hover {
-    background: darkorange;
-}
-/* ===============================
-   EDIT PAGE - VERTICAL FIX
-=================================*/
-
-.edit-container form {
+/* Form Layout */
+.card form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
-    margin:auto;
+    gap: 12px;
 }
 
-.edit-container input,
-.edit-container select {
-    width: 100%;
-    padding: 12px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-}
-
-.edit-container button {
-    padding: 12px;
-    border-radius: 25px;
-    border: none;
-    background: white;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.edit-container button:hover {
-    background: #02188f;
-    color: white;
-
-}
-
-h2 {
-    text-align:center;
-    margin-bottom:60px;
-    margin-top:-40px;
-    font-size:250%;
-    font-family:'Times New Roman';
-}
 /* ===============================
-   ADMIN FILTER STYLE
+   FORM INPUTS (MATCHED STYLE)
 =================================*/
 
-.filter-form {
-    margin: 20px 0;
-    display: flex;
-    gap: 10px;
-}
+.vertical-form input,
+.vertical-form select,
+.card input,
+.card select {
 
-.filter-form select {
-    padding: 8px 12px;
-    border-radius: 15px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+
+    border-radius: 30px;      /* same rounded edges */
     border: none;
+    outline: none;
+
+    font-size: 15px;
+    text-align: center;
+
+    background: white;
+    color: black;
+
+    appearance: none;         /* removes ugly default arrow */
 }
 
-.filter-form button {
-    padding: 8px 15px;
-    border-radius: 15px;
+/* Fix dropdown arrow (clean look) */
+.card select,
+.vertical-form select {
+    cursor: pointer;
+}
+
+/* Edit page button style match */
+.card button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 30px;
     border: none;
     background: white;
     font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
-.filter-form button:hover {
-    background: #02188f;
+.card button:hover {
+    background: #2673bbc5;
     color: white;
 }
-

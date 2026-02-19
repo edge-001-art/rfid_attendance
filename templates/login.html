@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Login</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="login-body">
@@ -13,12 +14,16 @@
         <h1>RFID Tracking System</h1>
 
         <form method="POST">
-            <input type="text" name="username" placeholder="Username" required>
+            <!-- CHANGE username → email -->
+            <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
 
             <div class="login-actions">
                 <button type="submit" class="login-btn">Login</button>
-                <a href="{{ url_for('forgot') }}" class="forgot-link">Forgot Password?</a>
+                <!-- REMOVE forgot link unless you create the route -->
+                <a href="{{ url_for('register') }}" class="forgot-link">
+                    Create Account
+                </a>
             </div>
         </form>
 

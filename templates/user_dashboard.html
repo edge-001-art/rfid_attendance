@@ -1,40 +1,95 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>User Dashboard</title>
+
+    <!-- IMPORTANT: This loads your CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body class="dashboard-container">
 
 <div class="header">
-    
-    <h1>RFID VEHICLE MONITORING RECORD</h1>
+    <h1>USER DASHBOARD</h1>
     <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
 </div>
-<div class="user-container glass-card">
 
-<form method="POST" action="{{ url_for('record') }}">
+<!-- TWO COLUMN LAYOUT -->
+<div class="user-split-container">
 
-<select name="rfid_type">
-    <option>Autosweep</option>
-    <option>EasyTrip</option>
-</select>
+    <!-- LEFT SIDE - INPUT FORM -->
+    <div class="glass-card left-panel">
 
-<input type="text" name="vehicle_type" placeholder="Vehicle Type" required>
-<input type="text" name="plate_number" placeholder="Plate Number" required>
-<input type="text" name="driver" placeholder="Driver" required>
-<input type="text" name="department" placeholder="Department" required>
-<input type="date" name="travel_date" required>
-<input type="text" name="from_location" placeholder="From Location" required>
-<input type="text" name="to_location" placeholder="To Location" required>
-<input type="text" name="rfid_location" placeholder="RFID Location" required>
-<input type="number" name="amount" placeholder="Amount" required>
+        <h2>RFID Transaction</h2>
 
-<button type="submit" class="submit-btn">Submit Record</button>
+        <div class="balance">
+            ₱ {{ balance }}
+        </div>
 
+        {% if balance < 500 %}
+        <div class="low-warning">
+            ⚠ Low Balance! Please reload.
+        </div>
+        {% endif %}
 
-</form>
+        <form method="POST" class="vertical-form">
+
+            <select name="rfid_type">
+                <option>Autosweep</option>
+                <option>Easytrip</option>
+            </select>
+
+            <select name="vehicle_type" required>
+                <option value="">Select Vehicle Type</option>
+                <option>Sedan</option>
+                <option>SUV</option>
+                <option>Hatchback</option>
+                <option>Van</option>
+                <option>Pickup</option>
+                <option>Truck</option>
+                <option>Motorcycle</option>
+            </select>
+
+            <input type="text" name="plate_number" placeholder="Plate Number" required>
+            <input type="text" name="driver" placeholder="Driver" required>
+            <input type="text" name="department" placeholder="Department" required>
+            <input type="date" name="travel_date" required>
+            <input type="text" name="from_location" placeholder="From" required>
+            <input type="text" name="to_location" placeholder="To" required>
+            <input type="text" name="rfid_location" placeholder="RFID Location" required>
+            <input type="number" name="amount" placeholder="Amount" required>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <!-- RIGHT SIDE - HISTORY -->
+    <div class="glass-card right-panel">
+
+        <h2>Travel History</h2>
+
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Plate</th>
+                <th>Vehicle</th>
+                <th>Amount</th>
+                <th>Remaining</th>
+            </tr>
+
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.travel_date }}</td>
+                <td>{{ log.plate_number }}</td>
+                <td>{{ log.vehicle_type }}</td>
+                <td>₱ {{ log.amount }}</td>
+                <td>₱ {{ log.remaining_balance }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
 
 </div>
 

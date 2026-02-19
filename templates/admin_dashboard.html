@@ -4,6 +4,7 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body class="dashboard-container">
 
 <div class="header">
@@ -11,59 +12,168 @@
     <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
 </div>
 
+<!-- FLASH MESSAGES -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash">
+      {% for message in messages %}
+        <p>{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- TOTAL -->
 <div class="total-box">
     Total Amount: ₱ {{ total }}
 </div>
 
 <!-- ================= FILTER ================= -->
-<form method="GET" action="{{ url_for('dashboard') }}" class="filter-form">
-    <select name="filter">
+<form method="GET" class="filter-form">
+
+    <input type="text" name="search" placeholder="Search Plate"
+           value="{{ request.args.get('search','') }}">
+
+    <select name="rfid_type">
         <option value="All">All</option>
-        <option value="EasyTrip"
-            {% if selected_filter == "EasyTrip" %}selected{% endif %}>
-            EasyTrip
-        </option>
         <option value="Autosweep"
-            {% if selected_filter == "Autosweep" %}selected{% endif %}>
+            {% if request.args.get('rfid_type') == 'Autosweep' %}selected{% endif %}>
             Autosweep
         </option>
+        <option value="Easytrip"
+            {% if request.args.get('rfid_type') == 'Easytrip' %}selected{% endif %}>
+            Easytrip
+        </option>
     </select>
+
+    <select name="vehicle_type">
+        <option value="All">All Vehicle Types</option>
+        <option value="Sedan" {% if request.args.get('vehicle_type') == 'Sedan' %}selected{% endif %}>Sedan</option>
+        <option value="SUV" {% if request.args.get('vehicle_type') == 'SUV' %}selected{% endif %}>SUV</option>
+        <option value="Hatchback" {% if request.args.get('vehicle_type') == 'Hatchback' %}selected{% endif %}>Hatchback</option>
+        <option value="Van" {% if request.args.get('vehicle_type') == 'Van' %}selected{% endif %}>Van</option>
+        <option value="Pickup" {% if request.args.get('vehicle_type') == 'Pickup' %}selected{% endif %}>Pickup</option>
+        <option value="Truck" {% if request.args.get('vehicle_type') == 'Truck' %}selected{% endif %}>Truck</option>
+        <option value="Motorcycle" {% if request.args.get('vehicle_type') == 'Motorcycle' %}selected{% endif %}>Motorcycle</option>
+    </select>
+
     <button type="submit">Filter</button>
 </form>
 
-<div class="admin-container">
-<table>
-    <tr>
-        <th>RFID</th>
-        <th>Plate</th>
-        <th>Driver</th>
-        <th>Date</th>
-        <th>From</th>
-        <th>To</th>
-        <th>RFID Location</th>
-        <th>Amount</th>
-        <th>Action</th>
-    </tr>
+<!-- ================= PENDING USERS ================= -->
+<div class="section">
+    <h2>Pending Users</h2>
 
-    {% for log in logs %}
-    <tr>
-        <td>{{ log.rfid_type }}</td>
-        <td>{{ log.plate_number }}</td>
-        <td>{{ log.driver }}</td>
-        <td>{{ log.travel_date }}</td>
-        <td>{{ log.from_location }}</td>
-        <td>{{ log.to_location }}</td>
-        <td>{{ log.rfid_location }}</td>
-        <td>₱ {{ log.amount }}</td>
-        <td>
-            <a href="{{ url_for('edit', id=log.id) }}" style="color:white">Edit</a> |
-            <a href="{{ url_for('delete', id=log.id) }}" style="color:white">Delete</a>
-        </td>
-    </tr>
-    {% endfor %}
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
 
-</table>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>
+                    <form method="POST"
+                          action="{{ url_for('approve', id=user.id) }}"
+                          style="display:inline;">
+                        <button type="submit" class="edit-btn">
+                            Approve
+                        </button>
+                    </form>
+
+                    <form method="POST"
+                          action="{{ url_for('reject', id=user.id) }}"
+                          style="display:inline;">
+                        <button type="submit" class="delete-btn">
+                            Reject
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </div>
 
-</body>
-</html>
+<!-- ================= RELOAD BALANCE ================= -->
+<div class="section">
+    <h2>Reload User Balance</h2>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Reload</th>
+            </tr>
+
+            {% for user in all_users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>₱ {{ "%.2f"|format(user.balance) }}</td>
+                <td>
+                    <form method="POST"
+                          action="{{ url_for('reload_balance', id=user.id) }}">
+                        <input type="number" name="amount"
+                               placeholder="Amount"
+                               step="0.01"
+                               required>
+                        <button type="submit">Reload</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+<!-- ================= ALL TRANSACTIONS ================= -->
+<div class="section">
+    <h2>All Transactions</h2>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Department</th>
+                <th>RFID</th>
+                <th>Vehicle</th>
+                <th>Plate</th>
+                <th>Driver</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Location</th>
+                <th>Amount</th>
+                <th>Remaining</th>
+                <th>Action</th>
+            </tr>
+
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.travel_date }}</td>
+                <td>{{ log.department }}</td>
+                <td>{{ log.rfid_type }}</td>
+                <td>{{ log.vehicle_type }}</td>
+                <td>{{ log.plate_number }}</td>
+                <td>{{ log.driver }}</td>
+                <td>{{ log.from_location }}</td>
+                <td>{{ log.to_location }}</td>
+                <td>{{ log.rfid_location }}</td>
+                <td>₱ {{ "%.2f"|format(log.amount) }}</td>
+                <td>₱ {{ "%.2f"|format(log.remaining_balance) }}</td>
+                <td>
+                    <a href="{{ url_for('edit', id=log.id) }}"
+                       class="edit-btn">Edit</a>
+
+                    <a href="{{ url_for('delete', id=log.id) }}"
+                       class="delete-btn">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
